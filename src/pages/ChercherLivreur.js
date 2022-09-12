@@ -13,9 +13,10 @@ import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Navigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { useListeLivreurs } from "../data/useLivreurListe";
 // import { useMediaQuery } from 'react-responsive';
 
-const ChercherLivreur = ({ token }) => {
+const ChercherLivreur = () => {
   const [showMessage, setShowMessage] = useState(false);
   const [message, setMessage] = useState("");
 
@@ -23,16 +24,8 @@ const ChercherLivreur = ({ token }) => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const [livreurs, setLivreurs] = useState([]);
-  useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/listeLivreurs", {
-      method: "GET",
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        setLivreurs(data);
-      });
-  }, []);
+  const livreurs = useListeLivreurs();
+
   console.log(livreurs);
 
   const [id, setId] = useState("");
