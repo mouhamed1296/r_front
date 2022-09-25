@@ -71,10 +71,10 @@ const AuthForm = () => {
 
   return (
     <Wrapper>
-      <HeaderForm>
-        <h4>Connecter vous a votre compte</h4>
-      </HeaderForm>
       <ContentForm>
+        <HeaderForm>
+          <h4>Connecter vous a votre compte</h4>
+        </HeaderForm>
         {error !== "" && (
           <div id="error">
             <p>
@@ -87,26 +87,30 @@ const AuthForm = () => {
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="form-group">
             <div className="firstColumn">
-              <label htmlFor="exampleInputEmail1" className="form-label">
-                Adresse e-mail
-              </label>
-              <input
-                type="email"
-                className="form-control"
-                placeholder="Entrez-votre email"
-                name="email"
-                {...register("email", { required: true })}
-              />
-              <label htmlFor="exampleInputPassword1" className="form-label">
-                Mot de passe
-              </label>
-              <input
-                type="password"
-                className="form-control"
-                name="password"
-                placeholder="Entrez-votre mot de pass"
-                {...register("password", { required: true })}
-              />
+              <div>
+                <label htmlFor="exampleInputEmail1" className="form-label">
+                  Adresse e-mail
+                </label>
+                <input
+                  type="email"
+                  className="form-control"
+                  placeholder="Entrez-votre email"
+                  name="email"
+                  {...register("email", { required: true })}
+                />
+              </div>
+              <div>
+                <label htmlFor="exampleInputPassword1" className="form-label">
+                  Mot de passe
+                </label>
+                <input
+                  type="password"
+                  className="form-control"
+                  name="password"
+                  placeholder="Entrez-votre mot de pass"
+                  {...register("password", { required: true })}
+                />
+              </div>
             </div>
             <div className="secondColumn">
               <input
@@ -129,7 +133,9 @@ const AuthForm = () => {
               <button type="submit">S’identifier</button>
             </div>
             <div className="Two">
-              <Link to={"/login"}>Nouvel utilisateurs?inscrivez-vous ici</Link>
+              <Link to={"/login"}>
+                Nouvel utilisateurs?<span>S'inscrire</span>
+              </Link>
             </div>
           </FooterForm>
         </form>
@@ -139,23 +145,26 @@ const AuthForm = () => {
 };
 
 const Wrapper = styled.div`
-  width: 1049px;
-  height: 796px;
-  margin-left: 372px;
-  margin-top: 110px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: auto;
+  /*margin-left: 372px;
+  margin-top: 110px;*/
+  padding: 1rem;
 `;
 
 const HeaderForm = styled.div`
-  width: 1049px;
-  height: 109px;
+  width: 100%;
+  height: auto;
+  padding: 1rem;
   background: #f2a401;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
   h4 {
-    width: 503px;
-    height: 33px;
-    margin-left: 70px;
-    padding-top: 40px;
+    text-align: center;
     font-family: "Epilogue";
     font-style: normal;
     font-weight: 400;
@@ -166,11 +175,21 @@ const HeaderForm = styled.div`
 `;
 
 const ContentForm = styled.div`
+  form {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+  div.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  div.firstColumn {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
   div.form-group div.firstColumn label {
-    width: 149px;
-    height: 21px;
-    margin-left: 70px;
-    margin-top: 40px;
     font-family: "Epilogue";
     font-style: normal;
     font-weight: 400;
@@ -194,19 +213,11 @@ const ContentForm = styled.div`
   }
 
   div.form-group div.firstColumn input {
-    width: 422px;
-    height: 58px;
-    margin-left: 70px;
-    margin-top: 10px;
     border: 0.1px solid rgba(0, 0, 0, 0.5);
     border-radius: 5px;
   }
 
   form div.form-group div.secondColumn label {
-    width: 149px;
-    height: 16px;
-    margin-left: 25px;
-    margin-top: 75px;
     font-family: "Epilogue";
     font-style: normal;
     font-weight: 400;
@@ -215,13 +226,18 @@ const ContentForm = styled.div`
     color: #292d31;
   }
 
+  form div.form-group div.secondColumn {
+    display: flex;
+    margin-top: 1.5rem;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
   form div.form-group div.secondColumn input[type="checkbox"] {
-    margin-left: 70px;
-    margin-top: 75px;
+    margin-top: 0;
   }
 
   form div.form-group div.thirdColumn p {
-    margin-left: 70px;
     margin-top: 30px;
     font-family: "Epilogue";
     font-style: normal;
@@ -239,15 +255,16 @@ const ContentForm = styled.div`
 `;
 
 const FooterForm = styled.div`
-  width: 1049px;
-  height: 109px;
-  margin-top: 30px;
+  margin-top: 2rem;
+  padding: 1rem;
+  display: flex;
+  width: 100%;
+  height: auto;
   background: #f2a401;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
   div.One {
-    margin-left: 68px;
-    padding-top: 25px;
+    width: 100%;
   }
 
   div.One button[type="submit"] {
@@ -261,16 +278,18 @@ const FooterForm = styled.div`
     border: 2px solid #ffffff;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 5px;
-    width: 233px;
-    height: 56px;
+    padding: 2rem;
     cursor: pointer;
+    @media (max-width: 500px) {
+      padding: 1rem;
+    }
   }
 
   div.Two {
-    margin-left: 348px;
-    margin-top: -38px;
-    width: 333px;
-    height: 56px;
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+    padding: 0.5rem;
   }
 
   div.Two a {
@@ -286,6 +305,12 @@ const FooterForm = styled.div`
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 5px;
     cursor: pointer;
+  }
+  div.Two a span {
+    text-decoration: underline dotted;
+  }
+  div.Two a span:hover {
+    color: #f2a401;
   }
 `;
 

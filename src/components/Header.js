@@ -1,84 +1,209 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { Link, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
 
 // import { createMedia } from '@artsy/fresnel';
 
 const Header = () => {
   const token = JSON.parse(localStorage.getItem("login"));
   const navigate = useNavigate();
+  const [showMobileMenu, setShowMobileMenu] = useState(false);
 
   function logOut() {
     localStorage.setItem("login", JSON.stringify(null));
+    if (showMobileMenu) {
+      setShowMobileMenu(false);
+    }
     navigate("/auth", { replace: true });
   }
 
+  const toggleMobileMenu = () => {
+    if (showMobileMenu) {
+      setShowMobileMenu(false);
+    } else {
+      setShowMobileMenu(true);
+    }
+  };
+
   return (
-    <Wrapper>
-      <InfosHeaderTop>
-        <p>Horaires : 08h00 - 18h00 | du lundi au samedi</p>
-      </InfosHeaderTop>
-      <Brand>
-        <img src={"/images/logoHeader.png"} alt="logoHeader" />
-      </Brand>
-      <Nav>
-        {!token ? (
-          <>
-            <Link to="/">Accueil</Link>
-            <Link to="/">Nos services</Link>
-            <Link to="APropos">A propos</Link>
-            <Link to="Contact">Contact</Link>
-          </>
-        ) : token.roleCompte === "client" ? (
-          <>
-            <Link to="/dashboard/espaceClient">Espace Client</Link>
-            <Link to="/dashboard/chercherLivreur">Chercher livreur</Link>
-            <Link to="/dashboard/commandes">Mes commandes</Link>
-            <Link to="/dashboard/suivreColis">Suivi Colis</Link>
-          </>
-        ) : (
-          <Link to="/dashboard/livraison">Commandes à livrer</Link>
-        )}
-      </Nav>
-      {/*<Search>
+    <>
+      <Wrapper>
+        <InfosHeaderTop>
+          <p>Horaires : 08h00 - 18h00 | du lundi au samedi</p>
+        </InfosHeaderTop>
+        <Container>
+          <Brand>
+            <img src={"/images/logoHeader.png"} alt="logoHeader" />
+          </Brand>
+          <Nav>
+            {!token ? (
+              <>
+                <NavLink to="/">Accueil</NavLink>
+                <NavLink to="/">Nos services</NavLink>
+                <NavLink to="APropos">A propos</NavLink>
+                <NavLink to="Contact">Contact</NavLink>
+                <LogIn>
+                  <div>
+                    <NavLink to={"/auth"}>Se connecter</NavLink>
+                  </div>
+                </LogIn>
+                <SingUp>
+                  <div>
+                    <NavLink to={"/login"}>S'inscrire</NavLink>
+                  </div>
+                </SingUp>
+              </>
+            ) : token.roleCompte === "client" ? (
+              <>
+                <NavLink to="/dashboard/espaceClient">Espace Client</NavLink>
+                <NavLink to="/dashboard/chercherLivreur">
+                  Chercher livreur
+                </NavLink>
+                <NavLink to="/dashboard/commandes">Mes commandes</NavLink>
+                <LogOut>
+                  <div onClick={() => logOut()}>
+                    <a>Se déconnecter</a>
+                  </div>
+                </LogOut>
+              </>
+            ) : (
+              <>
+                <NavLink to="/dashboard/livraison">Commandes à livrer</NavLink>
+                <LogOut>
+                  <div onClick={() => logOut()}>
+                    <a>Se déconnecter</a>
+                  </div>
+                </LogOut>
+              </>
+            )}
+          </Nav>
+          <MobileMenuToggler>
+            <FontAwesomeIcon
+              icon={faBars}
+              size="2x"
+              onClick={() => toggleMobileMenu()}
+            />
+          </MobileMenuToggler>
+          {/*<Search>
         <img src={"/images/search1.png"} alt="search" />
       </Search>*/}
-      {!token ? (
-        <>
-          <LogIn>
-            <div>
-              <Link to={"/auth"}>Se connecter</Link>
-            </div>
-          </LogIn>
-          <SingUp>
-            <div>
-              <Link to={"/login"}>S'inscrire</Link>
-            </div>
-          </SingUp>
-        </>
-      ) : (
-        <LogOut>
-          <div onClick={() => logOut()}>
-            <a>Se déconnecter</a>
-          </div>
-        </LogOut>
-      )}
-    </Wrapper>
+        </Container>
+      </Wrapper>
+      <MobileMenu show={showMobileMenu}>
+        <MobileNav>
+          {!token ? (
+            <>
+              <NavLink onClick={() => setShowMobileMenu(false)} to="/">
+                Accueil
+              </NavLink>
+              <NavLink onClick={() => setShowMobileMenu(false)} to="/">
+                Nos services
+              </NavLink>
+              <NavLink onClick={() => setShowMobileMenu(false)} to="APropos">
+                A propos
+              </NavLink>
+              <NavLink onClick={() => setShowMobileMenu(false)} to="Contact">
+                Contact
+              </NavLink>
+              <LogIn>
+                <div>
+                  <NavLink
+                    onClick={() => setShowMobileMenu(false)}
+                    to={"/auth"}
+                  >
+                    Se connecter
+                  </NavLink>
+                </div>
+              </LogIn>
+              <SingUp>
+                <div>
+                  <NavLink
+                    onClick={() => setShowMobileMenu(false)}
+                    to={"/login"}
+                  >
+                    S'inscrire
+                  </NavLink>
+                </div>
+              </SingUp>
+            </>
+          ) : token.roleCompte === "client" ? (
+            <>
+              <NavLink
+                onClick={() => setShowMobileMenu(false)}
+                to="/dashboard/espaceClient"
+              >
+                Espace Client
+              </NavLink>
+              <NavLink
+                onClick={() => setShowMobileMenu(false)}
+                to="/dashboard/chercherLivreur"
+              >
+                Chercher livreur
+              </NavLink>
+              <NavLink
+                onClick={() => setShowMobileMenu(false)}
+                to="/dashboard/commandes"
+              >
+                Mes commandes
+              </NavLink>
+              <LogOut>
+                <div onClick={() => logOut()}>
+                  <a>Se déconnecter</a>
+                </div>
+              </LogOut>
+            </>
+          ) : (
+            <>
+              <NavLink
+                onClick={() => setShowMobileMenu(false)}
+                to="/dashboard/livraison"
+              >
+                Commandes à livrer
+              </NavLink>
+              <LogOut>
+                <div onClick={() => logOut()}>
+                  <a>Se déconnecter</a>
+                </div>
+              </LogOut>
+            </>
+          )}
+        </MobileNav>
+      </MobileMenu>
+    </>
   );
 };
 
 const Wrapper = styled.div`
-  weight: 1905px;
-  height: 140.7px;
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  width: 100%;
   margin-left: 0;
   margin-top: 18px;
   background-color: #fff;
   box-shadow: 0px 9px 12px rgba(0, 0, 0, 0.12);
 `;
 
+const Container = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5rem;
+  padding: 1rem;
+  @media (max-width: 1040px) {
+    justify-content: space-between;
+    padding: 1rem;
+  }
+
+  div {
+    box-sizing: border-box;
+  }
+`;
+
 const InfosHeaderTop = styled.div`
   height: 25px;
-  weight: 472px;
   font-family: "Epilogue", sans-serif;
   font-style: normal;
   font-weight: 400;
@@ -89,22 +214,29 @@ const InfosHeaderTop = styled.div`
 `;
 
 const Brand = styled.div`
-  width: 211px;
-  height: 72px;
-  margin-left: 290px;
-  margin-top: 36px;
   cursor: pointer;
+
+  @media (max-width: 600px) {
+    img {
+      width: 100px;
+    }
+  }
 `;
 
 const Nav = styled.nav`
   display: flex;
   list-style: none;
   gap: 2rem;
-  height: 18.47px;
-  margin-left: 664px;
-  margin-top: -30px;
   font-family: "Epilogue", sans-serif;
   font-style: normal;
+
+  @media (max-width: 1092px) {
+    gap: 1rem;
+  }
+
+  @media (max-width: 1040px) {
+    display: none;
+  }
 
   a {
     text-decoration: none;
@@ -128,20 +260,12 @@ const Search = styled.div`
 `;
 
 const LogIn = styled.div`
-  width: 181px;
-  height: 15.47px;
-  margin-left: 1345px;
-  margin-top: 27px;
-
   div {
     box-sizing: border-box;
-    margin-top: -50px;
   }
 
   a {
     text-decoration: none;
-    width: 181px;
-    height: 42.21px;
     background: #fff;
     border: 2px solid #f2a401;
     border-radius: 46px;
@@ -154,24 +278,15 @@ const LogIn = styled.div`
     line-height: 20px;
     background-color: #fff;
     color: #292d31;
-    margin-left: -46%;
   }
 `;
 const SingUp = styled.div`
-  width: 129px;
-  height: 40.21px;
-  margin-left: 1475px;
-  margin-top: -24px;
-
   div {
     box-sizing: border-box;
-    margin-top: 9px;
   }
 
   a {
     text-decoration: none;
-    width: 129px;
-    height: 42.21px;
     background: #fff;
     border: 2px solid #f2a401;
     border-radius: 46px;
@@ -187,20 +302,12 @@ const SingUp = styled.div`
   }
 `;
 const LogOut = styled.div`
-  width: 181px;
-  height: 15.47px;
-  margin-left: 1720px;
-  margin-top: -27px;
-
   div {
     box-sizing: border-box;
-    margin-top: -42px;
   }
 
   a {
     text-decoration: none;
-    width: 181px;
-    height: 42.21px;
     background: #fff;
     border: 2px solid #f2a401;
     border-radius: 46px;
@@ -213,7 +320,45 @@ const LogOut = styled.div`
     line-height: 20px;
     background-color: #fff;
     color: #292d31;
-    margin-left: -46%;
+  }
+`;
+
+const MobileMenuToggler = styled.div`
+  display: none;
+  cursor: pointer;
+  @media (max-width: 1040px) {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+  }
+`;
+
+const MobileMenu = styled.div`
+  display: ${(props) => (!props.show ? "none" : "block")};
+`;
+
+const MobileNav = styled.nav`
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+  padding: 1rem;
+  list-style: none;
+  gap: 2rem;
+  font-family: "Epilogue", sans-serif;
+  font-style: normal;
+  background-color: #fff;
+  box-shadow: 0px 9px 12px rgba(0, 0, 0, 0.12);
+
+  a {
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 20px;
+    color: #292d31;
+  }
+
+  a:hover {
+    color: #f2a401;
   }
 `;
 

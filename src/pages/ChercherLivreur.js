@@ -165,13 +165,17 @@ const ChercherLivreur = () => {
 };
 
 const Wrapper = styled.div`
-  height: 1107px;
+  width: 100%;
+  height: auto;
+  padding-left: 4rem;
+  padding-right: 4rem;
+  padding-bottom: 4rem;
+
+  @media (max-width: 1040px) {
+    padding: 2rem;
+  }
 
   div.title h4 {
-    width: 284px;
-    height: 33px;
-    margin-left: 104px;
-    margin-top: 50px;
     font-family: "Epilogue";
     font-style: normal;
     font-weight: 400;
@@ -183,27 +187,36 @@ const Wrapper = styled.div`
 
   div.card {
     margin-top: 15px;
-    margin-left: 104px;
-    width: 1684px;
+    width: 100%;
   }
 `;
 
 const Header = styled.div`
   background: #292d31;
-  height: 15vh;
+  height: auto;
   width: 100%;
   display: flex;
   margin-top: 35px;
+  margin-bottom: 1rem;
+  @media (max-width: 1040px) {
+    display: none;
+  }
+
+  div.bouton {
+    display: flex;
+    box-sizing: border-box;
+    justify-content: space-between;
+    gap: 5rem;
+  }
 
   div.bouton p.UOne {
     background: #f2a401;
     border-radius: 10px;
-    width: 336px;
-    height: 88px;
-    margin-left: 224px;
     padding-top: 40px;
     text-align: center;
     margin-top: 20px;
+    padding: 1rem;
+    margin-left: 1rem;
   }
 
   div.bouton p.UOne a {
@@ -215,8 +228,6 @@ const Header = styled.div`
     font-weight: 400;
     font-size: 20px;
     line-height: 20px;
-    width: 130px;
-    height: 21px;
     cursor: pointer;
     text-decoration: none;
   }
@@ -224,11 +235,9 @@ const Header = styled.div`
   div.bouton p.Dtwo {
     background: #f2a401;
     border-radius: 10px;
-    width: 336px;
-    height: 88px;
-    margin-left: 1304px;
-    margin-top: -99px;
     text-align: center;
+    padding: 1rem;
+    margin-top: 1rem;
   }
 
   div.bouton p.Dtwo button {
@@ -240,9 +249,7 @@ const Header = styled.div`
     font-weight: 400;
     font-size: 20px;
     line-height: 20px;
-    width: 210px;
     border-style: none;
-    height: 21px;
     cursor: pointer;
   }
 `;

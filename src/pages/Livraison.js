@@ -35,52 +35,59 @@ const Livraison = () => {
         <h4>Listes de Livraison</h4>
       </div>
 
-      {livraison.map((liv) => (
-        <div
-          className="card"
-          onClick={() => {
-            /*setId(livreur.id);
+      {livraison.length !== 0 ? (
+        livraison.map((liv) => (
+          <div
+            className="card"
+            onClick={() => {
+              /*setId(livreur.id);
                 handleShow();*/
-          }}
-          key={liv.id}
-        >
-          <div className="card-body">
-            <p>{`N° ${liv.numero}`}</p>
-            <p>Description: {liv.Description}</p>
-            <p>Poids: {liv.poids}</p>
-            {`${getClient(liv.envoyeur_id)}`}
-            <p>
-              Client: {`${client && client.nom} ${client && client.prenom}`}
-            </p>
+            }}
+            key={liv.id}
+          >
+            <div className="card-body">
+              <p>{`N° ${liv.numero}`}</p>
+              <p>Description: {liv.Description}</p>
+              <p>Poids: {liv.poids}</p>
+              {`${getClient(liv.envoyeur_id)}`}
+              <p>
+                Client: {`${client && client.nom} ${client && client.prenom}`}
+                <br />
+                Numero: {`${client && client.telephone}`}
+              </p>
+            </div>
           </div>
-        </div>
-      ))}
+        ))
+      ) : (
+        <p
+          style={{ marginTop: "5rem", fontSize: "1.2rem", fontWeight: "bold" }}
+        >
+          Aucune livraison à faire pour le moment
+        </p>
+      )}
     </Wrapper>
   );
 };
 
 const Wrapper = styled.div`
-    height: 1107px;
-  
-    div.title h4 {
-      height: 33px;
-      margin-left: 104px;
-      margin-top: 50px;
-      mar
-      font-family: "Epilogue";
-      font-style: normal;
-      font-weight: 400;
-      font-size: 32px;
-      line-height: 33px;
-      text-align: center;
-      color: #292d31;
-    }
-  
-    div.card {
-      margin-top: 15px;
-      margin-left: 104px;
-      width: 1684px;
-    }
-  `;
+  width: 100%;
+  height: auto;
+  padding: 1rem;
+
+  div.title h4 {
+    font-family: "Epilogue";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 33px;
+    text-align: center;
+    color: #292d31;
+  }
+
+  div.card {
+    margin-top: 15px;
+    width: 100%;
+  }
+`;
 
 export default Livraison;

@@ -115,14 +115,20 @@ const CommandesClient = () => {
   );
 };
 
+/* CSS using styled components */
 const Wrapper = styled.div`
-  height: 1107px;
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  width: 100%;
+  margin-bottom: 1rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  justify-content: center;
+  align-items: center;
 
   div.title h4 {
-    height: 33px;
-    margin-left: 104px;
-    margin-top: 50px;
-    mar
+    margin-top: 1rem;
     font-family: "Epilogue";
     font-style: normal;
     font-weight: 400;
@@ -133,9 +139,8 @@ const Wrapper = styled.div`
   }
 
   div.card {
-    margin-top: 15px;
-    margin-left: 104px;
-    width: 1684px;
+    width: 80%;
+    margin-bottom: 1rem;
   }
   div.card form {
     display: flex;
@@ -161,8 +166,12 @@ const Wrapper = styled.div`
     font-weight: bold;
   }
   div.card form select {
-    padding: 0.2rem
+    padding: 0.2rem;
   }
+
+  @media (max-width: 400px) {
+    padding: 0;
+  } ;
 `;
 
 export default CommandesClient;

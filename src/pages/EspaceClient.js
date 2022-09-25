@@ -160,27 +160,23 @@ const EspaceClient = () => {
 };
 
 const Wrapper = styled.div`
-  width: 1440px;
-  height: 1544px;
+  width: 100%;
+  height: auto;
 `;
 
 const HeaderContent = styled.div`
   div {
     background: #292d31;
-    width: 1926px;
-    height: 175px;
-    margin-top: 45px;
-    margin-left: -40px;
+    width: 100%;
+    height: auto;
+    padding: 1rem;
+    margin-top: 1rem;
     cursor: pointer;
   }
 
   div.bouton p.UOne {
     background: #f2a401;
     border-radius: 10px;
-    width: 336px;
-    height: 88px;
-    margin-left: 324px;
-    padding-top: 40px;
     text-align: center;
   }
 
@@ -192,19 +188,12 @@ const HeaderContent = styled.div`
     font-weight: 400;
     font-size: 20px;
     line-height: 20px;
-    width: 130px;
-    height: 21px;
     cursor: pointer;
-    margin-top: -52px;
   }
 
   div.bouton p.Dtwo {
     background: #f2a401;
     border-radius: 10px;
-    width: 336px;
-    height: 88px;
-    margin-left: 1304px;
-    margin-top: -105px;
     text-align: center;
     text-decoration: none;
     border: none;
@@ -213,82 +202,65 @@ const HeaderContent = styled.div`
   p.Dtwo button {
     background: #f2a401;
     color: #ffffff;
-    margin-top: 35px;
     font-family: "Epilogue";
     font-style: normal;
     font-weight: 400;
     font-size: 20px;
     line-height: 20px;
-    width: 210px;
     border-style: none;
-    height: 21px;
     cursor: pointer;
   }
 `;
 
 const FormulaireClient = styled.div`
- form div.container h4 {
-  width: 596px;
-  height: 33px;
-  margin-left: 364px;
-  margin-top: 50px;
-  font-family: 'Epilogue';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 32px;
-  line-height: 33px;
-  color: #292D31;
- }
- div#success {
-  background-color: hsl(138, 80%, 78%);
-  width: 40%;
-  margin-top: 1rem;
-  padding: 1rem;
-  border-radius: 5px;
-  margin-left: 557px;
-}
-div#success p {
-  font-size: 1.2rem;
-  font-weight: bold;
-  text-align: center;
-  color: hsl(148, 76%, 30%);
-}
+  form div.container h4 {
+    font-family: "Epilogue";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 33px;
+    color: #292d31;
+  }
+  div#success {
+    background-color: hsl(138, 80%, 78%);
+    width: 40%;
+    margin-top: 1rem;
+    padding: 1rem;
+    border-radius: 5px;
+  }
+  div#success p {
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-align: center;
+    color: hsl(148, 76%, 30%);
+  }
   form {
-    background: #EFF1F5;
+    background: #eff1f5;
     padding: 20px;
-    width: 1910px;
-    height: 100%;
-    margin-top: 50px;
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
   }
 
   .form-group label {
-    width: 294px;
-    height: 21px;
-    margin-left: 557px;
-    margin-top: 40px;
-    font-family: 'Epilogue';
+    font-family: "Epilogue";
     font-style: normal;
     font-weight: 400;
     font-size: 20px;
     line-height: 20px;
-    color: #292D31;
+    color: #292d31;
   }
 
   .form-group input {
-    width: 501px;
-    height: 76px;
-    margin-left: 557px;
   }
 
   .form-group textarea {
-    width: 501px;
-    height: 76px;
-    margin-left: 557px;
   }
 
   .form-group small.valid {
     color: red;
-    margin-left: 557px;
+  }
 `;
 
 export default EspaceClient;

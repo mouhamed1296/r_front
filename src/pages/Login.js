@@ -52,10 +52,10 @@ const Login = () => {
 
   return (
     <Wrapper>
-      <HeaderForm>
-        <h4>Creez votre compte</h4>
-      </HeaderForm>
       <ContentForm>
+        <HeaderForm>
+          <h4>Creez votre compte</h4>
+        </HeaderForm>
         <form className="" onSubmit={handleSubmit(onSubmit)}>
           <div className="form-group1">
             <label htmlFor="Compte">Type de compte</label>
@@ -82,43 +82,45 @@ const Login = () => {
           </div>
           <div className="form-group2">
             <label htmlFor="Name">Personne</label>
-            <select
-              className="form-select"
-              name="civilite"
-              {...register("civilite", { required: true })}
-            >
-              <option value="monsier">Mr</option>
-              <option value="madame">Mme</option>
-            </select>
-            <div className="Input">
-              <input
-                type="text"
-                className="form-control"
-                id="Firstame"
-                name="prenom"
-                placeholder="Prenom"
-                {...register("prenom", { required: true })}
-              />
-              <small className="validate">
-                {errors.prenom && (
-                  <span className="error">Le prenom est obligatoire</span>
-                )}
-              </small>
-            </div>
-            <div className="para">
-              <input
-                type="text"
-                className="form-control"
-                id="Lastname"
-                name="nom"
-                placeholder="Nom"
-                {...register("nom", { required: true })}
-              />
-              <small className="validate">
-                {errors.nom && (
-                  <span className="error">Le nom est obligatoire</span>
-                )}
-              </small>
+            <div>
+              <select
+                className="form-select"
+                name="civilite"
+                {...register("civilite", { required: true })}
+              >
+                <option value="monsier">Mr</option>
+                <option value="madame">Mme</option>
+              </select>
+              <div className="Input">
+                <input
+                  type="text"
+                  className="form-control"
+                  id="Firstame"
+                  name="prenom"
+                  placeholder="Prenom"
+                  {...register("prenom", { required: true })}
+                />
+                <small className="validate">
+                  {errors.prenom && (
+                    <span className="error">Le prenom est obligatoire</span>
+                  )}
+                </small>
+              </div>
+              <div className="para">
+                <input
+                  type="text"
+                  className="form-control"
+                  id="Lastname"
+                  name="nom"
+                  placeholder="Nom"
+                  {...register("nom", { required: true })}
+                />
+                <small className="validate">
+                  {errors.nom && (
+                    <span className="error">Le nom est obligatoire</span>
+                  )}
+                </small>
+              </div>
             </div>
           </div>
           <div className="form-group3">
@@ -175,26 +177,30 @@ const Login = () => {
           </div>
           <div className="form-group8">
             <label htmlFor="Dispo">Disponibilite</label>
-            <input
-              type="radio"
-              id="bool"
-              name="disponibilite"
-              value="1"
-              {...register("disponibilite", { required: true })}
-            />
-            <label htmlFor="client" className="client">
-              Oui
-            </label>
-            <input
-              type="radio"
-              id="bool"
-              name="disponibilite"
-              value="0"
-              {...register("disponibilite", { required: true })}
-            />
-            <label htmlFor="livreur" className="livreur">
-              Non
-            </label>
+            <div>
+              <input
+                type="radio"
+                id="bool"
+                name="disponibilite"
+                value="1"
+                {...register("disponibilite", { required: true })}
+              />
+              <label htmlFor="client" className="client">
+                Oui
+              </label>
+            </div>
+            <div>
+              <input
+                type="radio"
+                id="bool"
+                name="disponibilite"
+                value="0"
+                {...register("disponibilite", { required: true })}
+              />
+              <label htmlFor="livreur" className="livreur">
+                Non
+              </label>
+            </div>
           </div>
           <div className="form-group6">
             <input
@@ -224,24 +230,25 @@ const Login = () => {
 };
 
 const Wrapper = styled.div`
-  width: 1049px;
-  height: 1296px;
-  margin-left: 372px;
-  margin-top: 110px;
+  width: 100%;
+  height: auto;
+  display: flex;
+  padding: 1rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
 const HeaderForm = styled.div`
-  width: 1049px;
-  height: 109px;
+  width: 100%;
+  height: auto;
+  padding: 1rem;
+  margin-bottom: 1rem;
   background: #f2a401;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
   h4 {
     margin: 0;
     padding: 0;
-    width: 314px;
-    height: 33px;
-    margin-left: 70px;
-    padding-top: 40px;
     font-family: "Epilogue";
     font-style: normal;
     font-weight: 400;
@@ -252,11 +259,15 @@ const HeaderForm = styled.div`
 `;
 
 const ContentForm = styled.div`
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  form div.form-group1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+  }
   form div.form-group1 label {
-    width: 159px;
-    height: 21px;
-    margin-left: 70px;
-    margin-top: 40px;
     font-family: "Epilogue";
     font-style: normal;
     font-weight: 400;
@@ -266,24 +277,31 @@ const ContentForm = styled.div`
   }
 
   form div.form-group1 input[type="radio"] {
-    margin-left: 50px;
   }
 
   form div.form-group1 label.client {
-    margin-left: 15px;
-    margin-top: 40px;
   }
 
   form div.form-group1 label.livreur {
-    margin-left: 15px;
-    margin-top: 40px;
+  }
+
+  form div.form-group2 {
+    display: flex;
+    flex-direction: column !important;
+    gap: 1rem;
+  }
+
+  form div.form-group2 div {
+    display: flex;
+    flex-direction: column !important;
+    gap: 0.5rem;
+  }
+
+  form div.form-group2 div select {
+    width: 50%;
   }
 
   form div.form-group2 label {
-    width: 153px;
-    height: 21px;
-    margin-left: 70px;
-    margin-top: 40px;
     font-family: "Epilogue";
     font-style: normal;
     font-weight: 400;
@@ -293,41 +311,32 @@ const ContentForm = styled.div`
   }
 
   div select.form-select {
-    width: 232px;
-    height: 48px;
     background: #ffffff;
     border: 0.5px solid rgba(0, 0, 0, 0.5);
-    margin-left: 70px;
-    margin-top: 40px;
   }
 
   form div.form-group2 input[type="text"] {
-    width: 320px;
-    height: 48px;
-    margin-left: 70px;
-    margin-top: 40px;
     background: #ffffff;
     border: 0.5px solid rgba(0, 0, 0, 0.5);
   }
 
   form div.form-group2 div {
-    margin-left: 240px;
   }
 
   form div.form-group2 div.Input {
-    margin-top: -88px;
   }
 
   form div.form-group2 div.para {
-    margin-left: 570px;
-    margin-top: -112px;
+  }
+
+  form div.form-group3 {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1rem;
   }
 
   form div.form-group3 label {
-    width: 153px;
-    height: 21px;
-    margin-left: 70px;
-    margin-top: 40px;
     font-family: "Epilogue";
     font-style: normal;
     font-weight: 400;
@@ -337,37 +346,29 @@ const ContentForm = styled.div`
   }
 
   form div.form-group3 input[type="email"] {
-    width: 320px;
-    height: 48px;
-    margin-left: 70px;
-    margin-top: 20px;
     background: #ffffff;
     border: 0.5px solid rgba(0, 0, 0, 0.5);
   }
 
   form div.form-group3 input[type="password"] {
-    width: 320px;
-    height: 48px;
-    margin-left: 70px;
-    margin-top: 20px;
     background: #ffffff;
     border: 0.5px solid rgba(0, 0, 0, 0.5);
   }
 
   form div.form-group3 div.address {
-    margin-top: -88px;
   }
 
   form div.form-group3 div.motpass {
-    margin-left: 330px;
-    margin-top: -154px;
+  }
+
+  form div.form-group4 {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1rem;
   }
 
   form div.form-group4 label {
-    width: 215pxpx;
-    height: 21px;
-    margin-left: 70px;
-    margin-top: 40px;
     font-family: "Epilogue";
     font-style: normal;
     font-weight: 400;
@@ -377,22 +378,20 @@ const ContentForm = styled.div`
   }
 
   form div.form-group4 input[type="text"] {
-    width: 320px;
-    height: 48px;
-    margin-left: 70px;
-    margin-top: 20px;
     background: #ffffff;
     border: 0.5px solid rgba(0, 0, 0, 0.5);
   }
 
   form div.form-group6 {
-    margin-top: -20px;
   }
-
+  form div.form-group6 {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
   form div.form-group6 label {
-    width: 215pxpx;
-    height: 21px;
-    margin-left: 18px;
     font-family: "Epilogue";
     font-style: normal;
     font-weight: 400;
@@ -402,20 +401,19 @@ const ContentForm = styled.div`
   }
 
   form div.form-group6 input[type="checkbox"] {
-    width: 34px;
-    height: 25px;
-    margin-left: 70px;
-    margin-top: 40px;
     background: #eff1f5;
     border: 1px solid #ffffff;
     border-radius: 3px;
   }
 
+  form div.form-group2 {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
   form div.form-group8 label {
-    width: 215pxpx;
-    height: 21px;
-    margin-left: 68px;
-    margin-top: 40px;
     font-family: "Epilogue";
     font-style: normal;
     font-weight: 400;
@@ -425,33 +423,30 @@ const ContentForm = styled.div`
   }
 
   form div.form-group8 input[type="radio"] {
-    margin-left: 50px;
   }
 
   form div.form-group8 label.client {
-    margin-left: 15px;
   }
 
   form div.form-group8 label.livreur {
-    margin-left: 15px;
   }
 
   div small.validate {
     color: red;
-    margin-left: 70px;
   }
 `;
 
 const FooterForm = styled.div`
-  width: 1049px;
-  height: 109px;
-  margin-top: 30px;
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
   background: #f2a401;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
   div.One {
-    margin-left: 68px;
-    padding-top: 25px;
   }
 
   div.One button[type="submit"] {
@@ -465,14 +460,11 @@ const FooterForm = styled.div`
     border: 2px solid #ffffff;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 5px;
-    width: 233px;
-    height: 56px;
+    padding: 1rem;
     cursor: pointer;
   }
 
   div.buttonTwo {
-    margin-left: 328px;
-    margin-top: -55px;
   }
 
   div.buttonTwo button[type="button"] {
@@ -486,8 +478,7 @@ const FooterForm = styled.div`
     border: 2px solid #ffffff;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 5px;
-    width: 233px;
-    height: 56px;
+    padding: 1rem;
     cursor: pointer;
   }
 `;
